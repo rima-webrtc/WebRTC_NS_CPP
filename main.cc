@@ -18,6 +18,8 @@
 #include <stdint.h>
 #include "timing.h"
 
+#include <iostream>
+
 //采用https://github.com/mackron/dr_libs/blob/master/dr_wav.h 解码
 #define DR_WAV_IMPLEMENTATION
 
@@ -56,7 +58,7 @@ void wavWrite_s16(char *filename, int16_t *buffer, size_t sampleRate, size_t tot
 
 //读取wav文件
 short *wavRead_s16(char *filename, uint32_t *sampleRate, uint64_t *totalSampleCount, unsigned int *channels) {
-    short *buffer = drwav_open_file_and_read_pcm_frames_s16(filename, channels, sampleRate, totalSampleCount, NULL);
+    short *buffer = drwav_open_file_and_read_pcm_frames_s16(filename, channels, sampleRate, (long long unsigned int*)totalSampleCount, NULL);
     if (buffer == NULL) {
         printf("ERROR.");
     }
@@ -109,7 +111,7 @@ int nsProc(short *input, size_t SampleCount, size_t sampleRate, int num_channels
     AudioBuffer audio(sampleRate, num_channels, sampleRate, num_channels, sampleRate,
                       num_channels);
     StreamConfig stream_config(sampleRate, num_channels);
-    NsConfig cfg;
+ NsConfig cfg;
     /*
      * NsConfig::SuppressionLevel::k6dB
      * NsConfig::SuppressionLevel::k12dB
@@ -144,14 +146,15 @@ void WebRtc_DeNoise(char *in_file, char *out_file) {
     short *data_in = wavRead_s16(in_file, &sampleRate, &nSampleCount, &channels);
     if (data_in != NULL) {
         double startTime = now();
-        short *data_out = (short *) calloc(nSampleCount, sizeof(short));
-        if (data_out != NULL) {
+       // short *data_out = (short *) calloc(nSampleCount, sizeof(short));
+       // if (data_out != NULL) {
+        std::cout << " insize: " << nSampleCount << " gcount_size:" << nSampleCount <<"sampleRate"<<sampleRate<<"channels"<<channels <<std::endl;
             nsProc(data_in, nSampleCount, sampleRate, channels);
             double time_interval = calcElapsed(startTime, now());
             printf("time interval: %d ms\n ", (int) (time_interval * 1000));
             wavWrite_s16(out_file, data_in, sampleRate, (uint32_t) nSampleCount, channels);
-            free(data_out);
-        }
+        //    free(data_out);
+        //}
         free(data_in);
     }
 }
