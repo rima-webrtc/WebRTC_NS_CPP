@@ -36,7 +36,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/webrtc_ns_cpp",
-            "args": ["/home/fengmao/cowa/WebRTC_NS_CPP/capture.wav","/home/fengmao/cowa/WebRTC_NS_CPP/capture_out.wav"],
+            "args": ["/home/fengmao/cowa_audio/WebRTC_NS_CPP/capture.wav","/home/fengmao/cowa_audio/WebRTC_NS_CPP/capture_out.wav"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],

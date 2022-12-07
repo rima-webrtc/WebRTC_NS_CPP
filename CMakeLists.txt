@@ -38,6 +38,8 @@ add_executable(unittest_ns_no_resample_2019
         unittest_ns_no_resample_2019.cc
         ${ns}
 )
+
+target_link_libraries(unittest_ns_no_resample_2019 -lm)
 #target_link_libraries(unittest_ns_no_resample_2019 -lm)
 
 

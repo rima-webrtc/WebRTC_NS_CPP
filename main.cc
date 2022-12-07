@@ -134,7 +134,7 @@ int nsProc(short *input, size_t SampleCount, size_t sampleRate, int num_channels
             audio.MergeFrequencyBands();
         }
         audio.CopyTo(stream_config, buffer);
-        buffer += stream_config.num_frames();
+        buffer += stream_config.num_frames()*stream_config.num_channels();
     }
     return 0;
 }
