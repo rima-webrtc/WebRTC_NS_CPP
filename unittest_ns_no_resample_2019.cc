@@ -91,7 +91,7 @@ NoiseSuppressor ns(cfg, sampleRate, num_channels);
     size_t gcount_size = in_stream.gcount();
     size_t sampleCout = gcount_size/4;
     short * input_ptr = (short *)in_buffer;
-    std::cout << "process index: " << index++ << " insize: " << in_size << " gcount_size:" << gcount_size <<"sampleRate"<<sampleRate<<"channels"<<num_channels <<std::endl;
+    std::cout << "process index: " << index++ << " insize: " << in_size << " gcount_size:" << gcount_size <<" sampleRate: "<<sampleRate<<" channels: "<<num_channels <<std::endl;
   
   short* buffer = input_ptr;
   bool split_bands = sampleRate > 16000;
@@ -118,8 +118,8 @@ NoiseSuppressor ns(cfg, sampleRate, num_channels);
 }
 
 int main(int argc, char* argv[]) {
-  WebRtc_DeNoise("/home/fengmao/cowa_audio/WebRTC_NS_CPP/capture.pcm",
-                 "/home/fengmao/cowa_audio/WebRTC_NS_CPP/capture_NS_no_sample_2019.pcm", 48000, 2);
+  WebRtc_DeNoise("../capture.pcm",
+                 "../lab2/capture_NS_no_sample_2019_960*2.pcm", 48000, 2);
   printf("�������棬�������...\n");
   return 0;
 }
