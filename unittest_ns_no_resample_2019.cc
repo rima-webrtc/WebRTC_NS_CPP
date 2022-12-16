@@ -8,8 +8,8 @@
  *  be found in the AUTHORS file in the root of the source tree.
  */
 
-#include "ns/noise_suppressor.h"
-
+//#include "ns/noise_suppressor.h"
+#include "4884ns/include/modules/audio_processing/ns/noise_suppressor.h"
 #include <memory>
 #include <string>
 
@@ -89,6 +89,7 @@ NoiseSuppressor ns(cfg, sampleRate, num_channels);
     in_stream.read((char*)in_buffer, in_size);
     
     size_t gcount_size = in_stream.gcount();
+    
     size_t sampleCout = gcount_size/4;
     short * input_ptr = (short *)in_buffer;
     std::cout << "process index: " << index++ << " insize: " << in_size << " gcount_size:" << gcount_size <<" sampleRate: "<<sampleRate<<" channels: "<<num_channels <<std::endl;
@@ -118,7 +119,7 @@ NoiseSuppressor ns(cfg, sampleRate, num_channels);
 }
 
 int main(int argc, char* argv[]) {
-  WebRtc_DeNoise("../capture.pcm",
+  WebRtc_DeNoise("/home/fengmao/cowa_audio/backup_git/WebRTC_NS_CPP/capture.pcm",
                  "../lab2/capture_NS_no_sample_2019_960*2.pcm", 48000, 2);
   printf("�������棬�������...\n");
   return 0;

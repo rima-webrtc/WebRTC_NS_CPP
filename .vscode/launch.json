@@ -9,7 +9,7 @@
             "name": "(gdb) unittest_ns_no_resample_2019",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/unittest_ns_no_resample_2019",
+            "program": "${workspaceFolder}/build/unittest_ns_no_resample_4884",
             "args": [""],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
